@@ -1,183 +1,182 @@
-import { useState } from 'react';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
+import { Link } from 'react-router-dom';
 
 const Index = () => {
-  const [activeSection, setActiveSection] = useState('about');
+  const features = [
+    {
+      icon: 'Heart',
+      title: 'Профессиональный подход',
+      description: 'Актуальная информация основанная на последних медицинских исследованиях',
+    },
+    {
+      icon: 'BookOpen',
+      title: 'Образовательные статьи',
+      description: 'Понятные объяснения сложных медицинских тем для каждого',
+    },
+    {
+      icon: 'Users',
+      title: 'Индивидуальный подход',
+      description: 'Рекомендации с учетом особенностей каждого пациента',
+    },
+  ];
 
-  const articles = [
+  const recentArticles = [
     {
       id: 1,
       title: 'Профилактика сердечно-сосудистых заболеваний',
-      excerpt: 'Основные методы предотвращения заболеваний сердца и сосудов. Правильное питание, физическая активность и регулярные обследования.',
-      image: 'https://cdn.poehali.dev/projects/26b14aed-2ff3-462d-b6bf-6c30bb6cffd9/files/aecd4361-5016-478c-af26-aac9e1f152e5.jpg',
-      date: '15 октября 2024'
+      excerpt: 'Основные рекомендации по поддержанию здоровья сердца и сосудов в любом возрасте',
+      date: '15 октября 2025',
+      image: 'https://cdn.poehali.dev/projects/26b14aed-2ff3-462d-b6bf-6c30bb6cffd9/files/d4bf3ccd-124d-4ef7-8f9a-23608273fb17.jpg',
     },
     {
       id: 2,
-      title: 'Как правильно укреплять иммунитет',
-      excerpt: 'Научно обоснованные способы укрепления иммунной системы. Витамины, режим дня, закаливание и другие эффективные методы.',
-      image: 'https://cdn.poehali.dev/projects/26b14aed-2ff3-462d-b6bf-6c30bb6cffd9/files/aecd4361-5016-478c-af26-aac9e1f152e5.jpg',
-      date: '10 октября 2024'
+      title: 'Здоровый образ жизни: с чего начать',
+      excerpt: 'Практические советы для тех, кто решил изменить свои привычки и улучшить качество жизни',
+      date: '10 октября 2025',
+      image: 'https://cdn.poehali.dev/projects/26b14aed-2ff3-462d-b6bf-6c30bb6cffd9/files/d4bf3ccd-124d-4ef7-8f9a-23608273fb17.jpg',
     },
     {
       id: 3,
-      title: 'Здоровый сон: рекомендации врача',
-      excerpt: 'Важность качественного сна для здоровья. Практические советы по улучшению качества сна и борьбе с бессонницей.',
-      image: 'https://cdn.poehali.dev/projects/26b14aed-2ff3-462d-b6bf-6c30bb6cffd9/files/aecd4361-5016-478c-af26-aac9e1f152e5.jpg',
-      date: '5 октября 2024'
-    }
+      title: 'Важность регулярных медицинских осмотров',
+      excerpt: 'Почему профилактические визиты к врачу помогают сохранить здоровье на долгие годы',
+      date: '5 октября 2025',
+      image: 'https://cdn.poehali.dev/projects/26b14aed-2ff3-462d-b6bf-6c30bb6cffd9/files/d4bf3ccd-124d-4ef7-8f9a-23608273fb17.jpg',
+    },
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-secondary/30">
-      <header className="bg-white shadow-sm sticky top-0 z-50">
-        <nav className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <Icon name="Heart" size={32} className="text-primary" />
-              <h1 className="text-2xl font-bold text-primary">Мой Доктор</h1>
-            </div>
-            <div className="flex space-x-4">
-              <Button
-                variant={activeSection === 'about' ? 'default' : 'ghost'}
-                onClick={() => setActiveSection('about')}
-                className="text-base"
-              >
-                Обо мне
-              </Button>
-              <Button
-                variant={activeSection === 'articles' ? 'default' : 'ghost'}
-                onClick={() => setActiveSection('articles')}
-                className="text-base"
-              >
-                Статьи
-              </Button>
-            </div>
-          </div>
-        </nav>
-      </header>
-
-      <main className="container mx-auto px-4 py-12">
-        {activeSection === 'about' && (
-          <section className="animate-fade-in">
-            <div className="max-w-4xl mx-auto">
-              <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-                <div className="md:flex">
-                  <div className="md:w-1/2">
-                    <img
-                      src="https://cdn.poehali.dev/projects/26b14aed-2ff3-462d-b6bf-6c30bb6cffd9/files/27e42938-6716-4d31-8e50-f0fab86aabfc.jpg"
-                      alt="Доктор"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="md:w-1/2 p-8 md:p-12">
-                    <h2 className="text-3xl font-bold text-foreground mb-4">
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      
+      <main className="flex-grow">
+        <section className="relative bg-gradient-to-br from-primary/10 to-secondary py-20 md:py-32">
+          <div className="container mx-auto px-4">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
+                  Ваше здоровье — наш приоритет
+                </h1>
+                <p className="text-lg md:text-xl text-muted-foreground mb-8">
+                  Профессиональные медицинские статьи, советы и рекомендации от практикующего врача
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Link to="/blog">
+                    <Button size="lg" className="w-full sm:w-auto">
+                      Читать статьи
+                      <Icon name="ArrowRight" size={20} className="ml-2" />
+                    </Button>
+                  </Link>
+                  <Link to="/about">
+                    <Button size="lg" variant="outline" className="w-full sm:w-auto">
                       Обо мне
-                    </h2>
-                    <div className="space-y-4 text-muted-foreground">
-                      <p className="text-lg leading-relaxed">
-                        Добро пожаловать на мой медицинский блог! Я врач с многолетним опытом, 
-                        и моя миссия — делиться знаниями о здоровье в доступной форме.
-                      </p>
-                      <p className="leading-relaxed">
-                        Я глубоко уважаю профессию врача и понимаю, насколько важно доверие 
-                        между доктором и пациентом. Здесь я делюсь проверенной медицинской 
-                        информацией, основанной на научных исследованиях и клинической практике.
-                      </p>
-                      <p className="leading-relaxed">
-                        Моя цель — помочь вам лучше понимать своё здоровье, разбираться в 
-                        различных заболеваниях и их профилактике, а также принимать осознанные 
-                        решения о своём благополучии.
-                      </p>
-                      <div className="pt-6 flex items-center space-x-4">
-                        <div className="flex items-center space-x-2">
-                          <Icon name="Award" className="text-primary" size={20} />
-                          <span className="text-sm">Сертифицированный врач</span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <Icon name="BookOpen" className="text-primary" size={20} />
-                          <span className="text-sm">50+ статей</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                    </Button>
+                  </Link>
                 </div>
               </div>
-            </div>
-          </section>
-        )}
-
-        {activeSection === 'articles' && (
-          <section className="animate-fade-in">
-            <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-12">
-                <h2 className="text-4xl font-bold text-foreground mb-4">
-                  Статьи о здоровье
-                </h2>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  Научно обоснованная информация о профилактике и лечении различных заболеваний
-                </p>
+              <div className="relative">
+                <img
+                  src="https://cdn.poehali.dev/projects/26b14aed-2ff3-462d-b6bf-6c30bb6cffd9/files/29094065-0943-49da-8a1c-a53831713d62.jpg"
+                  alt="Медицинский кабинет"
+                  className="rounded-2xl shadow-2xl w-full h-auto"
+                />
               </div>
-
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {articles.map((article) => (
-                  <Card key={article.id} className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                    <div className="aspect-video overflow-hidden">
-                      <img
-                        src={article.image}
-                        alt={article.title}
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                    <CardHeader>
-                      <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-2">
-                        <Icon name="Calendar" size={16} />
-                        <span>{article.date}</span>
-                      </div>
-                      <CardTitle className="text-xl hover:text-primary transition-colors">
-                        {article.title}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <CardDescription className="text-base leading-relaxed">
-                        {article.excerpt}
-                      </CardDescription>
-                      <Button className="mt-4 w-full" variant="outline">
-                        <span>Читать статью</span>
-                        <Icon name="ArrowRight" size={16} className="ml-2" />
-                      </Button>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-      </main>
-
-      <footer className="bg-white border-t mt-20">
-        <div className="container mx-auto px-4 py-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="flex items-center space-x-2">
-              <Icon name="Heart" size={24} className="text-primary" />
-              <span className="font-semibold">Мой Доктор</span>
-            </div>
-            <p className="text-muted-foreground text-sm text-center">
-              Профессиональная медицинская информация для вашего здоровья
-            </p>
-            <div className="flex space-x-4">
-              <Button variant="ghost" size="sm">
-                <Icon name="Mail" size={20} />
-              </Button>
-              <Button variant="ghost" size="sm">
-                <Icon name="Phone" size={20} />
-              </Button>
             </div>
           </div>
-        </div>
-      </footer>
+        </section>
+
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Почему выбирают нас</h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Качественная медицинская информация, доступная каждому
+              </p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              {features.map((feature, index) => (
+                <Card key={index} className="border-2 hover:border-primary transition-colors">
+                  <CardContent className="p-6">
+                    <div className="bg-primary/10 w-16 h-16 rounded-lg flex items-center justify-center mb-4">
+                      <Icon name={feature.icon as any} size={32} className="text-primary" />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
+                    <p className="text-muted-foreground">{feature.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20 bg-secondary">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-4">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">Последние статьи</h2>
+                <p className="text-lg text-muted-foreground">
+                  Актуальная информация о здоровье и медицине
+                </p>
+              </div>
+              <Link to="/blog">
+                <Button variant="outline">
+                  Все статьи
+                  <Icon name="ArrowRight" size={20} className="ml-2" />
+                </Button>
+              </Link>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              {recentArticles.map((article) => (
+                <Card key={article.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+                  <img
+                    src={article.image}
+                    alt={article.title}
+                    className="w-full h-48 object-cover"
+                  />
+                  <CardContent className="p-6">
+                    <p className="text-sm text-muted-foreground mb-2">{article.date}</p>
+                    <h3 className="text-xl font-semibold mb-3">{article.title}</h3>
+                    <p className="text-muted-foreground mb-4">{article.excerpt}</p>
+                    <Link to="/blog" className="text-primary font-medium hover:underline inline-flex items-center">
+                      Читать далее
+                      <Icon name="ArrowRight" size={16} className="ml-1" />
+                    </Link>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <Card className="bg-primary text-white overflow-hidden">
+              <CardContent className="p-12 text-center">
+                <Icon name="Mail" size={48} className="mx-auto mb-6" />
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">Остались вопросы?</h2>
+                <p className="text-lg mb-8 opacity-90">
+                  Свяжитесь со мной для консультации или записи на прием
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button size="lg" variant="secondary">
+                    <Icon name="Mail" size={20} className="mr-2" />
+                    Написать письмо
+                  </Button>
+                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+                    <Icon name="Phone" size={20} className="mr-2" />
+                    Позвонить
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
     </div>
   );
 };
